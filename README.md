@@ -8,3 +8,4 @@ Aplikacja służąca do sortowania zbiorów danych różnymi algorytmami. Ma pom
 - 
 - 
 -
+
