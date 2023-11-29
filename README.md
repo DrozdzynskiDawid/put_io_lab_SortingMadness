@@ -5,7 +5,6 @@ Aplikacja służąca do sortowania zbiorów danych różnymi algorytmami. Ma pom
 
 ### Autorzy:
 - Dawid Drożdżyński 151867
-- 
-- 
--
-
+- Miłosz Koźlicki 151873
+- Julia Jaromirska 151600
+- Wiktoria Dębowska 151874
