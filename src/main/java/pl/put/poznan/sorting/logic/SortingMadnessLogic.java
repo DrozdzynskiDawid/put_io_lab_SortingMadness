@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import pl.put.poznan.sorting.logic.algorithms.BubbleSort;
 import pl.put.poznan.sorting.logic.algorithms.SelectionSort;
 import pl.put.poznan.sorting.rest.SortingMadnessController;
+import pl.put.poznan.sorting.rest.SortingResponse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SortingMadnessLogic {
     private static final Logger logger = LoggerFactory.getLogger(SortingMadnessController.class);
@@ -30,11 +33,22 @@ public class SortingMadnessLogic {
         }
     }
 
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList <T> data) {
+    public <T extends Comparable<T>> SortingResponse<T> sort(ArrayList <T> data) {
+        SortingResponse<T> result = new SortingResponse<>();
+        String algorithmName = sortingMethod.getName();
+        ArrayList<T> unorderedData = new ArrayList<>();
+        unorderedData = (ArrayList<T>) data.clone();
+        //sort and measure time
         long start = System.currentTimeMillis();
-        ArrayList<T> result = sortingMethod.sort(data);
+        ArrayList <T> sortedArray = sortingMethod.sort(unorderedData);
         long stop = System.currentTimeMillis() - start;
-        logger.info("Sorting time: " + stop + " ms");
+        //log and return result
+        logger.debug("\nAlgorithm: " + algorithmName
+                + "\nSorted array: " + sortedArray
+                + "\nSorting time: " + stop + " ms");
+        result.setAlgorithm(algorithmName);
+        result.setResult(sortedArray);
+        result.setSortingTime(stop);
         return result;
     }
 }
