@@ -24,7 +24,22 @@ public class BubbleSort implements SortingInterface {
 
     @Override
     public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data) {
-        Collections.sort(data);
+        int n = data.size();
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (data.get(j).compareTo(data.get(j + 1)) > 0) {
+                    T temp = data.get(j);
+                    data.set(j, data.get(j + 1));
+                    data.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
         return data;
     }
 }

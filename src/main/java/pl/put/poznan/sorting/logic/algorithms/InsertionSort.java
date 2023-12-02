@@ -4,7 +4,7 @@ import pl.put.poznan.sorting.logic.SortingInterface;
 
 import java.util.ArrayList;
 
-public class SelectionSort implements SortingInterface {
+public class InsertionSort implements SortingInterface {
     String name = SortingInterface.name;
 
     @Override
@@ -17,23 +17,21 @@ public class SelectionSort implements SortingInterface {
         this.name = name;
     }
 
-    public SelectionSort() {
-        setName("selectionSort");
+    public InsertionSort() {
+        setName("insertionSort");
     }
 
     @Override
     public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data) {
         int n = data.size();
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < n; j++) {
-                if (data.get(j).compareTo(data.get(minIndex)) < 0) {
-                    minIndex = j;
-                }
+        for (int i = 1; i < n; ++i) {
+            T key = data.get(i);
+            int j = i - 1;
+            while (j >= 0 && data.get(j).compareTo(key) > 0) {
+                data.set(j + 1, data.get(j));
+                j = j - 1;
             }
-            T temp = data.get(minIndex);
-            data.set(minIndex, data.get(i));
-            data.set(i, temp);
+            data.set(j + 1, key);
         }
         return data;
     }
