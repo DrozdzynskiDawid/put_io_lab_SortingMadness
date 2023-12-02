@@ -2,9 +2,7 @@ package pl.put.poznan.sorting.logic;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.put.poznan.sorting.logic.algorithms.BubbleSort;
-import pl.put.poznan.sorting.logic.algorithms.InsertionSort;
-import pl.put.poznan.sorting.logic.algorithms.SelectionSort;
+import pl.put.poznan.sorting.logic.algorithms.*;
 import pl.put.poznan.sorting.rest.SortingMadnessController;
 import pl.put.poznan.sorting.rest.SortingResponse;
 
@@ -31,6 +29,15 @@ public class SortingMadnessLogic {
                 break;
             case "insertionSort":
                 sortingMethod = new InsertionSort();
+                break;
+            case "mergeSort":
+                sortingMethod = new MergeSort();
+                break;
+            case "heapSort":
+                sortingMethod = new HeapSort();
+                break;
+            case "shellSort":
+                sortingMethod = new ShellSort();
                 break;
             default:
                 throw new Exception("Wrong algorithm name!");

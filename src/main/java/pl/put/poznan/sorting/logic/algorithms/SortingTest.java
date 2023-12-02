@@ -12,10 +12,17 @@ public class SortingTest {
         testSortingAlgorithm(new BubbleSort(), createIntegerList());
         testSortingAlgorithm(new InsertionSort(), createIntegerList());
         testSortingAlgorithm(new SelectionSort(), createIntegerList());
+        testSortingAlgorithm(new MergeSort(), createIntegerList());
+        testSortingAlgorithm(new HeapSort(), createIntegerList());
+        testSortingAlgorithm(new ShellSort(), createIntegerList());
+
         // Strings sorting test
-        testSortingAlgorithm(new InsertionSort(), createStringList());
         testSortingAlgorithm(new BubbleSort(), createStringList());
+        testSortingAlgorithm(new InsertionSort(), createStringList());
         testSortingAlgorithm(new SelectionSort(), createStringList());
+        testSortingAlgorithm(new MergeSort(), createStringList());
+        testSortingAlgorithm(new HeapSort(), createStringList());
+        testSortingAlgorithm(new ShellSort(), createStringList());
 
 
     }
