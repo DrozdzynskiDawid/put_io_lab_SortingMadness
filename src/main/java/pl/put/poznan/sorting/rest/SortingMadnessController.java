@@ -12,23 +12,31 @@ public class SortingMadnessController {
 
     private static final Logger logger = LoggerFactory.getLogger(SortingMadnessController.class);
 
-    @RequestMapping(value = "/sortInts", method = RequestMethod.POST, produces = "application/json")
-    public ArrayList<Integer> sortInts(@RequestParam ArrayList<Integer> arr,
-                                       @RequestParam String algo) throws Exception {
-        logger.info("Given array: " + arr.toString());
-        logger.info("Chosen algorithm: " + algo);
+    @RequestMapping(value = "/sortInts", method = RequestMethod.POST,
+            consumes = "application/json", produces = "application/json")
+    public ArrayList<SortingResponse<Integer>> sortInts(@RequestBody SortingRequest<Integer> request) throws Exception {
+        logger.info("Given array: " + request.getArray().toString());
+        logger.info("Chosen algorithms: " + request.getAlgorithms());
 
-        SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
-        return sorting.sort(arr);
+        ArrayList<SortingResponse<Integer>> response = new ArrayList<>();
+        for (String algo: request.getAlgorithms()) {
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
+            response.add(sorting.sort(request.getArray()));
+        }
+        return response;
     }
 
-    @RequestMapping(value = "/sortStrings", method = RequestMethod.POST, produces = "application/json")
-    public ArrayList<String> sortStrings(@RequestParam ArrayList<String> arr,
-                                         @RequestParam String algo) throws Exception {
-        logger.info("Given array: " + arr.toString());
-        logger.info("Chosen algorithm: " + algo);
+    @RequestMapping(value = "/sortStrings", method = RequestMethod.POST,
+            consumes = "application/json", produces = "application/json")
+    public ArrayList<SortingResponse<String>> sortStrings(@RequestBody SortingRequest<String> request) throws Exception {
+        logger.info("Given array: " + request.getArray().toString());
+        logger.info("Chosen algorithms: " + request.getAlgorithms());
 
-        SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
-        return sorting.sort(arr);
+        ArrayList<SortingResponse<String>> response = new ArrayList<>();
+        for (String algo: request.getAlgorithms()) {
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
+            response.add(sorting.sort(request.getArray()));
+        }
+        return response;
     }
 }
