@@ -9,5 +9,5 @@ public interface SortingInterface {
 
     void setName(String name);
 
-    <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data);
+    <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder);
 }

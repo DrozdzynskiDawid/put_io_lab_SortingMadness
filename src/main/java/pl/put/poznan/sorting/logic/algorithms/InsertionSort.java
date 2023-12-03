@@ -22,14 +22,20 @@ public class InsertionSort implements SortingInterface {
     }
 
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
         int n = data.size();
         for (int i = 1; i < n; ++i) {
             T key = data.get(i);
             int j = i - 1;
-            while (j >= 0 && data.get(j).compareTo(key) > 0) {
-                data.set(j + 1, data.get(j));
-                j = j - 1;
+            while (j >= 0) {
+                int comparisonResult = data.get(j).compareTo(key);
+
+                if (descOrder ? comparisonResult < 0 : comparisonResult > 0) {
+                    data.set(j + 1, data.get(j));
+                    j = j - 1;
+                } else {
+                    break;
+                }
             }
             data.set(j + 1, key);
         }

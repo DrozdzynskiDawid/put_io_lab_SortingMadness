@@ -29,7 +29,7 @@ public class SortingTest {
 
     private static <T extends Comparable<T>> void testSortingAlgorithm(SortingInterface sortingAlgorithm, List<T> data) {
         List<T> originalData = new ArrayList<>(data);
-        List<T> sortedData = sortingAlgorithm.sort(new ArrayList<>(data));
+        List<T> sortedData = sortingAlgorithm.sort(new ArrayList<>(data), false);
 
         System.out.println(sortingAlgorithm.getName() + " Result: " + sortedData);
 
@@ -43,7 +43,7 @@ public class SortingTest {
     }
 
     private static List<String> createStringList() {
-        return new ArrayList<>(Arrays.asList("dupka", "kupa", "dupa", "dżem", "bigos" ));
+        return new ArrayList<>(Arrays.asList("dżem", "bigos", "wanna", "sok", "panda", "mydełko" ));
     }
 
 }

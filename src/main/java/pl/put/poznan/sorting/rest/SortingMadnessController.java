@@ -17,10 +17,10 @@ public class SortingMadnessController {
     public ArrayList<SortingResponse<Integer>> sortInts(@RequestBody SortingRequest<Integer> request) throws Exception {
         logger.info("Given array: " + request.getArray().toString());
         logger.info("Chosen algorithms: " + request.getAlgorithms());
-
+        logger.info("Chosen sorting order: " + request.getSortingOrder());
         ArrayList<SortingResponse<Integer>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
-            SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder());
             response.add(sorting.sort(request.getArray()));
         }
         return response;
@@ -34,7 +34,7 @@ public class SortingMadnessController {
 
         ArrayList<SortingResponse<String>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
-            SortingMadnessLogic sorting = new SortingMadnessLogic(algo);
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder());
             response.add(sorting.sort(request.getArray()));
         }
         return response;

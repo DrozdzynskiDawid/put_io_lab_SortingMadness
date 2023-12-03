@@ -21,24 +21,28 @@ public class MergeSort implements SortingInterface {
         setName("mergeSort");
     }
     private <T extends Comparable<T>> void merge(
-            ArrayList<T> data, ArrayList<T> l, ArrayList<T> r, int left, int right) {
+            ArrayList<T> data, ArrayList<T> l, ArrayList<T> r, int left, int right, boolean descOrder) {
 
         int i = 0, j = 0, k = 0;
-        while (i < left && j < right)
-            if (l.get(i).compareTo(r.get(j))<=0)
-                data.set(k++,l.get(i++));
-            else
-                data.set(k++,r.get(j++));
+        while (i < left && j < right) {
+            if (descOrder ? l.get(i).compareTo(r.get(j)) >= 0 : l.get(i).compareTo(r.get(j)) <= 0) {
+                data.set(k++, l.get(i++));
+            } else {
+                data.set(k++, r.get(j++));
+            }
+        }
 
+        while (i < left) {
+            data.set(k++, l.get(i++));
+        }
 
-        while (i < left)
-            data.set(k++,l.get(i++));
-
-        while (j < right)
-            data.set(k++,r.get(j++));
+        while (j < right) {
+            data.set(k++, r.get(j++));
+        }
     }
+
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
         int n = data.size();
         if (n < 2) {
             return data;
@@ -54,9 +58,9 @@ public class MergeSort implements SortingInterface {
         for (int i = mid; i < n; i++)
             r.add(data.get(i));
 
-        sort(l);
-        sort(r);
-        merge(data, l, r, mid, n - mid);
+        sort(l, descOrder);
+        sort(r, descOrder);
+        merge(data, l, r, mid, n - mid, descOrder);
         return data;
     }
 }

@@ -22,16 +22,20 @@ public class ShellSort implements SortingInterface {
     }
 
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
         int n = data.size();
-
         for (int gap = n / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < n; i++) {
                 T key = data.get(i);
                 int j = i;
-                while (j >= gap && data.get(j - gap).compareTo(key)>0) {
-                    data.set(j, data.get(j - gap));
-                    j -= gap;
+                while (j >= gap) {
+                    int comparisonResult = data.get(j - gap).compareTo(key);
+                    if (descOrder ? comparisonResult < 0 : comparisonResult > 0) {
+                        data.set(j, data.get(j - gap));
+                        j -= gap;
+                    } else {
+                        break;
+                    }
                 }
                 data.set(j, key);
             }
