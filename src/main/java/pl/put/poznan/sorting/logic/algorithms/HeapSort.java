@@ -3,9 +3,8 @@ package pl.put.poznan.sorting.logic.algorithms;
 import pl.put.poznan.sorting.logic.SortingInterface;
 
 import java.util.ArrayList;
-
 public class HeapSort implements SortingInterface {
-    String name = SortingInterface.name;
+    private String name = SortingInterface.name;
 
     @Override
     public String getName() {
@@ -17,19 +16,18 @@ public class HeapSort implements SortingInterface {
         this.name = name;
     }
 
-    public HeapSort () {
+    public HeapSort() {
         setName("heapSort");
     }
+
     private <T extends Comparable<T>> void heapify(ArrayList<T> data, int n, int i, boolean descOrder) {
         int largest = i;
         int l = 2 * i + 1;
         int r = 2 * i + 2;
-
         if (descOrder) {
             if (l < n && data.get(l).compareTo(data.get(largest)) < 0) {
                 largest = l;
             }
-
             if (r < n && data.get(r).compareTo(data.get(largest)) < 0) {
                 largest = r;
             }
@@ -37,12 +35,10 @@ public class HeapSort implements SortingInterface {
             if (l < n && data.get(l).compareTo(data.get(largest)) > 0) {
                 largest = l;
             }
-
             if (r < n && data.get(r).compareTo(data.get(largest)) > 0) {
                 largest = r;
             }
         }
-
         if (largest != i) {
             T temp = data.get(i);
             data.set(i, data.get(largest));
@@ -54,19 +50,22 @@ public class HeapSort implements SortingInterface {
 
     @Override
     public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
+        return sortWithLimit(data, descOrder, Integer.MAX_VALUE);
+    }
+
+    @Override
+    public <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
 
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(data, n, i, descOrder);
         }
-
-        for (int i = n - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= Math.max(0, n - iterationLimit); i--) {
             T temp = data.get(0);
             data.set(0, data.get(i));
             data.set(i, temp);
             heapify(data, i, 0, descOrder);
         }
-
         return data;
     }
 }

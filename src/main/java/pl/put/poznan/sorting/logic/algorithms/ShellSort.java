@@ -23,9 +23,14 @@ public class ShellSort implements SortingInterface {
 
     @Override
     public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
+        return sortWithLimit(data, descOrder, Integer.MAX_VALUE);
+    }
+
+    @Override
+    public <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
         for (int gap = n / 2; gap > 0; gap /= 2) {
-            for (int i = gap; i < n; i++) {
+            for (int i = gap; i < Math.min(n, iterationLimit); i++) {
                 T key = data.get(i);
                 int j = i;
                 while (j >= gap) {

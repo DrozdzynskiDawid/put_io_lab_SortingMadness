@@ -18,6 +18,7 @@ public class SortingMadnessController {
         logger.info("Given array: " + request.getArray().toString());
         logger.info("Chosen algorithms: " + request.getAlgorithms());
         logger.info("Chosen sorting order: " + request.getSortingOrder());
+        logger.info("Chosen iteration limit: " + request.getIterationLimit());
         ArrayList<SortingResponse<Integer>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
             SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder());

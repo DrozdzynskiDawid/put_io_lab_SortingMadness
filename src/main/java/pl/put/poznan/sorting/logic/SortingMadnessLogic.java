@@ -13,12 +13,19 @@ import java.util.Map;
 public class SortingMadnessLogic {
     private static final Logger logger = LoggerFactory.getLogger(SortingMadnessController.class);
     private final boolean descOrder;
+    private final int iterationLimit;
     SortingInterface sortingMethod;
 
     public SortingMadnessLogic(String algorithm, boolean descOrder) throws Exception {
         chooseAlgorithm(algorithm);
         this.descOrder = descOrder;
+        this.iterationLimit = Integer.MAX_VALUE;
 
+    }
+    public SortingMadnessLogic(String algorithm, boolean descOrder, int iterationLimit) throws Exception {
+        chooseAlgorithm(algorithm);
+        this.descOrder = descOrder;
+        this.iterationLimit = iterationLimit;
     }
 
     void chooseAlgorithm(String algo) throws Exception {
@@ -53,7 +60,8 @@ public class SortingMadnessLogic {
         unorderedData = (ArrayList<T>) data.clone();
         //sort and measure time
         long start = System.currentTimeMillis();
-        ArrayList <T> sortedArray = sortingMethod.sort(unorderedData, descOrder);
+
+        ArrayList <T> sortedArray = sortingMethod.sortWithLimit(unorderedData, descOrder, iterationLimit);
         long stop = System.currentTimeMillis() - start;
         //log and return result
         logger.debug("\nAlgorithm: " + algorithmName

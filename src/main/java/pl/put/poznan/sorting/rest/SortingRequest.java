@@ -10,6 +10,8 @@ public class SortingRequest<T> {
 
     boolean sortingOrder;
 
+    int iterationLimit;
+
     public ArrayList<T> getArray() {
         return this.array;
     }
@@ -20,6 +22,10 @@ public class SortingRequest<T> {
 
     public boolean getSortingOrder(){
         return this.sortingOrder;
+    }
+
+    public int getIterationLimit(){
+        return this.iterationLimit;
     }
 
     public void setArray(ArrayList<T> array) {
@@ -33,4 +39,6 @@ public class SortingRequest<T> {
     public void setSortingOrder(boolean descOrder){
         this.sortingOrder = descOrder;
     }
+
+    public void  setIterationLimit(int iterationLimit){ this.iterationLimit = iterationLimit; }
 }
