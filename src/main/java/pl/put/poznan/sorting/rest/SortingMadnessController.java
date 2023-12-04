@@ -21,7 +21,7 @@ public class SortingMadnessController {
         logger.info("Chosen iteration limit: " + request.getIterationLimit());
         ArrayList<SortingResponse<Integer>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
-            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder());
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder(), request.getIterationLimit());
             response.add(sorting.sort(request.getArray()));
         }
         return response;
@@ -35,7 +35,7 @@ public class SortingMadnessController {
 
         ArrayList<SortingResponse<String>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
-            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder());
+            SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder(), request.getIterationLimit());
             response.add(sorting.sort(request.getArray()));
         }
         return response;

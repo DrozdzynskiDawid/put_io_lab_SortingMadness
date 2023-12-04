@@ -10,7 +10,5 @@ public interface SortingInterface {
 
     void setName(String name);
 
-    <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder);
-
-    <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit);
+    <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder, int iterationLimit);
 }

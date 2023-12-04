@@ -8,9 +8,9 @@ public class SortingRequest<T> {
 
     List<String> algorithms;
 
-    boolean sortingOrder;
+    boolean sortingOrder = false;
 
-    int iterationLimit;
+    int iterationLimit = Integer.MAX_VALUE;
 
     public ArrayList<T> getArray() {
         return this.array;

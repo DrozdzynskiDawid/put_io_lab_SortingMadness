@@ -23,12 +23,7 @@ public class BubbleSort implements SortingInterface {
     }
 
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
-        return sortWithLimit(data, descOrder, Integer.MAX_VALUE);
-    }
-
-    @Override
-    public <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
         boolean swapped;
         for (int i = 0; i < Math.min(iterationLimit, n - 1); i++) {

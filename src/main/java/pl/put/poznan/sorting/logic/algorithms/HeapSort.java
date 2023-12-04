@@ -49,12 +49,7 @@ public class HeapSort implements SortingInterface {
     }
 
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
-        return sortWithLimit(data, descOrder, Integer.MAX_VALUE);
-    }
-
-    @Override
-    public <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
 
         for (int i = n / 2 - 1; i >= 0; i--) {

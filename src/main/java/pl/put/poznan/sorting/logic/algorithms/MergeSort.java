@@ -38,14 +38,9 @@ public class MergeSort implements SortingInterface {
             data.set(k++, r.get(j++));
         }
     }
-    @Override
-    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder) {
-        // Use a default value for iteration limit (e.g., Integer.MAX_VALUE)
-        return sortWithLimit(data, descOrder, Integer.MAX_VALUE);
-    }
 
     @Override
-    public <T extends Comparable<T>> ArrayList<T> sortWithLimit(ArrayList<T> data, boolean descOrder, int iterationLimit) {
+    public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
         if (n < 2 || iterationLimit <= 0) {
             return data;
@@ -54,8 +49,8 @@ public class MergeSort implements SortingInterface {
         ArrayList<T> l = new ArrayList<>(data.subList(0, mid));
         ArrayList<T> r = new ArrayList<>(data.subList(mid, n));
 
-        sortWithLimit(l, descOrder, iterationLimit - 1);
-        sortWithLimit(r, descOrder, iterationLimit - 1);
+        sort(l, descOrder, iterationLimit - 1);
+        sort(r, descOrder, iterationLimit - 1);
 
         merge(data, l, r, mid, n - mid, descOrder);
 

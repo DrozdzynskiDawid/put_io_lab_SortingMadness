@@ -16,12 +16,6 @@ public class SortingMadnessLogic {
     private final int iterationLimit;
     SortingInterface sortingMethod;
 
-    public SortingMadnessLogic(String algorithm, boolean descOrder) throws Exception {
-        chooseAlgorithm(algorithm);
-        this.descOrder = descOrder;
-        this.iterationLimit = Integer.MAX_VALUE;
-
-    }
     public SortingMadnessLogic(String algorithm, boolean descOrder, int iterationLimit) throws Exception {
         chooseAlgorithm(algorithm);
         this.descOrder = descOrder;
@@ -60,8 +54,7 @@ public class SortingMadnessLogic {
         unorderedData = (ArrayList<T>) data.clone();
         //sort and measure time
         long start = System.currentTimeMillis();
-
-        ArrayList <T> sortedArray = sortingMethod.sortWithLimit(unorderedData, descOrder, iterationLimit);
+        ArrayList <T> sortedArray = sortingMethod.sort(unorderedData, descOrder, iterationLimit);
         long stop = System.currentTimeMillis() - start;
         //log and return result
         logger.debug("\nAlgorithm: " + algorithmName

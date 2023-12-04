@@ -29,7 +29,7 @@ public class SortingTest {
 
     private static <T extends Comparable<T>> void testSortingAlgorithm(SortingInterface sortingAlgorithm, List<T> data) {
         List<T> originalData = new ArrayList<>(data);
-        List<T> sortedData = sortingAlgorithm.sortWithLimit(new ArrayList<>(data), false, 4);
+        List<T> sortedData = sortingAlgorithm.sort(new ArrayList<>(data), false, 4);
 
         System.out.println(sortingAlgorithm.getName() + " Result: " + sortedData);
 
