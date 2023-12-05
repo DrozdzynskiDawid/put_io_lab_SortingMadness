@@ -22,6 +22,18 @@
     
     <dependencies>
         <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>4.0.0-M12</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.1.1</version>
+            <type>maven-plugin</type>
+        </dependency>
+        <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -44,7 +56,15 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <build>
         <plugins>

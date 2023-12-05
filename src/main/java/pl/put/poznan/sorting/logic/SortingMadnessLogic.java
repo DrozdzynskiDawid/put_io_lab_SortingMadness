@@ -1,3 +1,6 @@
+/**
+ * Package for logic of application
+ */
 package pl.put.poznan.sorting.logic;
 
 import org.slf4j.Logger;
@@ -10,18 +13,58 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class responsible for choosing algorithm and performing sort,
+ * implemen
+ * ,ts main logic of application
+ *
+ * @author DrozdzynskiDawid
+ * @version 1.0
+ */
 public class SortingMadnessLogic {
+    /**
+     * Field used for logging
+     */
     private static final Logger logger = LoggerFactory.getLogger(SortingMadnessController.class);
+
+    /**
+     * Descending order boolean field,
+     * true = descending
+     * false = ascending (default)
+     */
     private final boolean descOrder;
+
+    /**
+     * Iteration limit field,
+     * specifies passed from controller maximal number of iterations in algorithm
+     */
     private final int iterationLimit;
+
+    /**
+     * Object that stores chosen sorting strategy
+     */
     SortingInterface sortingMethod;
 
+    /**
+     * Constructor of class, responsible for choosing algorithm and setting fields
+     *
+     * @param algorithm name of algorithm to choose
+     * @param descOrder if true, data will be sorted in descending order
+     * @param iterationLimit maximal number of iterations in algorithm
+     * @throws Exception if algorithm with given name is not implemented
+     */
     public SortingMadnessLogic(String algorithm, boolean descOrder, int iterationLimit) throws Exception {
         chooseAlgorithm(algorithm);
         this.descOrder = descOrder;
         this.iterationLimit = iterationLimit;
     }
 
+    /**
+     * Method for choosing sorting strategy
+     *
+     * @param algo name of algorithm
+     * @throws Exception if algorithm with given name is not implemented
+     */
     void chooseAlgorithm(String algo) throws Exception {
         switch (algo) {
             case "bubbleSort":
@@ -47,6 +90,12 @@ public class SortingMadnessLogic {
         }
     }
 
+    /**
+     * Method that launch sorting and measure time of sorting
+     *
+     * @param data given array of data
+     * @return returns SortingResponse object with sorted array, name of used algorithm and execution time
+     */
     public <T extends Comparable<T>> SortingResponse<T> sort(ArrayList <T> data) {
         SortingResponse<T> result = new SortingResponse<>();
         String algorithmName = sortingMethod.getName();
