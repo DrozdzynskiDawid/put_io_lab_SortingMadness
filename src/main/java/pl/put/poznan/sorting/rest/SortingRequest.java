@@ -8,7 +8,7 @@ public class SortingRequest<T> {
 
     List<String> algorithms;
 
-    boolean sortingOrder = false;
+    boolean descendingOrder = false;
 
     int iterationLimit = Integer.MAX_VALUE;
 
@@ -21,7 +21,7 @@ public class SortingRequest<T> {
     }
 
     public boolean getSortingOrder(){
-        return this.sortingOrder;
+        return this.descendingOrder;
     }
 
     public int getIterationLimit(){
@@ -37,7 +37,7 @@ public class SortingRequest<T> {
     }
 
     public void setSortingOrder(boolean descOrder){
-        this.sortingOrder = descOrder;
+        this.descendingOrder = descOrder;
     }
 
     public void  setIterationLimit(int iterationLimit){ this.iterationLimit = iterationLimit; }
