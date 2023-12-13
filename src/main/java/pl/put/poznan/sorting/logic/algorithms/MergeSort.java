@@ -49,12 +49,13 @@ public class MergeSort implements SortingInterface {
         ArrayList<T> l = new ArrayList<>(data.subList(0, mid));
         ArrayList<T> r = new ArrayList<>(data.subList(mid, n));
 
-        sort(l, descOrder, iterationLimit - 1);
-        sort(r, descOrder, iterationLimit - 1);
+        sort(l, descOrder, Math.min(iterationLimit - 1, l.size()-1));
+        sort(r, descOrder, Math.min(iterationLimit - 1, r.size()-1));
 
         merge(data, l, r, mid, n - mid, descOrder);
 
         return data;
     }
+
 
 }

@@ -3,6 +3,7 @@
  */
 package pl.put.poznan.sorting.logic;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.put.poznan.sorting.logic.algorithms.*;
@@ -53,6 +54,7 @@ public class SortingMadnessLogic {
      * @param iterationLimit maximal number of iterations in algorithm
      * @throws Exception if algorithm with given name is not implemented
      */
+
     public SortingMadnessLogic(String algorithm, boolean descOrder, int iterationLimit) throws Exception {
         chooseAlgorithm(algorithm);
         this.descOrder = descOrder;
@@ -97,21 +99,23 @@ public class SortingMadnessLogic {
      * @return returns SortingResponse object with sorted array, name of used algorithm and execution time
      */
     public <T extends Comparable<T>> SortingResponse<T> sort(ArrayList <T> data) {
-        SortingResponse<T> result = new SortingResponse<>();
-        String algorithmName = sortingMethod.getName();
-        ArrayList<T> unorderedData = new ArrayList<>();
-        unorderedData = (ArrayList<T>) data.clone();
-        //sort and measure time
-        long start = System.currentTimeMillis();
-        ArrayList <T> sortedArray = sortingMethod.sort(unorderedData, descOrder, iterationLimit);
-        long stop = System.currentTimeMillis() - start;
-        //log and return result
-        logger.debug("\nAlgorithm: " + algorithmName
-                + "\nSorted array: " + sortedArray
-                + "\nSorting time: " + stop + " ms");
-        result.setAlgorithm(algorithmName);
-        result.setResult(sortedArray);
-        result.setSortingTime(stop);
+            if(data == null || data.isEmpty()) throw new NullPointerException("Data is null!");
+            SortingResponse<T> result = new SortingResponse<>();
+            String algorithmName = sortingMethod.getName();
+            ArrayList<T> unorderedData = new ArrayList<>();
+            unorderedData = (ArrayList<T>) data.clone();
+            //sort and measure time
+            long start = System.currentTimeMillis();
+            ArrayList <T> sortedArray = sortingMethod.sort(unorderedData, descOrder, iterationLimit);
+            long stop = System.currentTimeMillis() - start;
+            //log and return result
+            logger.debug("\nAlgorithm: " + algorithmName
+                    + "\nSorted array: " + sortedArray
+                    + "\nSorting time: " + stop + " ms");
+            result.setAlgorithm(algorithmName);
+            result.setResult(sortedArray);
+            result.setSortingTime(stop);
         return result;
+        
     }
 }
