@@ -3,7 +3,6 @@
  */
 package pl.put.poznan.sorting.logic;
 
-import org.apache.commons.lang3.ObjectUtils.Null;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.put.poznan.sorting.logic.algorithms.*;
@@ -11,13 +10,10 @@ import pl.put.poznan.sorting.rest.SortingMadnessController;
 import pl.put.poznan.sorting.rest.SortingResponse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class responsible for choosing algorithm and performing sort,
- * implemen
- * ,ts main logic of application
+ * implements main logic of application
  *
  * @author DrozdzynskiDawid
  * @version 1.0

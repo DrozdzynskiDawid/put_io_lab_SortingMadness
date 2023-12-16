@@ -21,7 +21,7 @@ public class SortingMadnessController {
             throw new Exception("Data is empty");
         }
         logger.info("Chosen algorithms: " + request.getAlgorithms());
-        if(request.getAlgorithms().isEmpty() || request.getAlgorithms().size() == 6){
+        if(request.getAlgorithms().isEmpty() || request.getAlgorithms().size() > 6){
             logger.error("Invalid number of algorithms chosen");
             throw new Exception("Invalid number of algorithms chosen");
         }
@@ -39,8 +39,17 @@ public class SortingMadnessController {
             consumes = "application/json", produces = "application/json")
     public ArrayList<SortingResponse<String>> sortStrings(@RequestBody SortingRequest<String> request) throws Exception {
         logger.info("Given array: " + request.getArray().toString());
+        if (request.getArray().isEmpty()) {
+            logger.error("Data is empty");
+            throw new Exception("Data is empty");
+        }
         logger.info("Chosen algorithms: " + request.getAlgorithms());
-
+        if(request.getAlgorithms().isEmpty() || request.getAlgorithms().size() > 6){
+            logger.error("Invalid number of algorithms chosen");
+            throw new Exception("Invalid number of algorithms chosen");
+        }
+        logger.info("Chosen sorting order: " + request.getSortingOrder());
+        logger.info("Chosen iteration limit: " + request.getIterationLimit());
         ArrayList<SortingResponse<String>> response = new ArrayList<>();
         for (String algo: request.getAlgorithms()) {
             SortingMadnessLogic sorting = new SortingMadnessLogic(algo, request.getSortingOrder(), request.getCheckedIterationLimit());
