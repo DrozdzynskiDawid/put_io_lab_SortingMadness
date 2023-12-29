@@ -37,21 +37,13 @@ public class SortingMadnessLogic {
      */
     private final int iterationLimit;
 
-    /**
-     * Automatic algorithm selection field,
-
-     */
-    private boolean autoAlgorithmSelection;
 
     /**
      * Object that stores chosen sorting strategy
      */
     SortingInterface sortingMethod;
 
-    /**
-     * Object used for choosing the best algorithm for characteristics of given data
-     */
-    AutomaticAlgorithmSelector autoAlgorithmSelector;
+
 
 
 
@@ -70,9 +62,6 @@ public class SortingMadnessLogic {
         chooseAlgorithm(algorithm);
 
     }
-
-
-
 
     /**
      * Method for choosing sorting strategy
