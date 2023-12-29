@@ -3,7 +3,7 @@ package pl.put.poznan.sorting.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jetty.util.HttpCookieStore.Empty;
+// import org.eclipse.jetty.util.HttpCookieStore.Empty;
 
 
 public class SortingRequest<T> {
@@ -34,7 +34,7 @@ public class SortingRequest<T> {
     public int getCheckedIterationLimit(){
         if (this.iterationLimit <= 0) return Integer.MAX_VALUE;
         else
-        return this.iterationLimit;
+            return this.iterationLimit;
     }
 
     public void setArray(ArrayList<T> array) {
@@ -55,6 +55,6 @@ public class SortingRequest<T> {
     public void setCheckedIterationLimit(int iterationLimit){
         if (iterationLimit <= 0) this.iterationLimit = Integer.MAX_VALUE;
         else
-        this.iterationLimit = iterationLimit;
+            this.iterationLimit = iterationLimit;
     }
 }

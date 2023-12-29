@@ -2,6 +2,8 @@ package pl.put.poznan.sorting.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.sorting.logic.AutomaticAlgorithmSelector;
+import pl.put.poznan.sorting.logic.SortingInterface;
 import pl.put.poznan.sorting.logic.SortingMadnessLogic;
 
 import java.util.ArrayList;
@@ -57,4 +59,23 @@ public class SortingMadnessController {
         }
         return response;
     }
+    @PostMapping(value = "/automaticAlgorithmSelect", consumes = "application/json", produces = "application/json")
+    public SortingResponse<Object> automaticAlgorithmSelect(@RequestBody SortingRequest<Object> request) {
+        logger.info("Given array: " + request.getArray().toString());
+        if (request.getArray().isEmpty()) {
+            logger.error("Data is empty");
+            return new SortingResponse<>();
+        }
+
+        SortingInterface selectedAlgorithm = AutomaticAlgorithmSelector.selectAlgorithm(
+                request.getArray(), request.getSortingOrder());
+
+        SortingResponse<Object> response = new SortingResponse<>();
+        response.setAlgorithm(selectedAlgorithm.getName());
+
+        return response;
+    }
+
+
+
 }

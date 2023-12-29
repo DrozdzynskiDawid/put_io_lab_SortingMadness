@@ -38,9 +38,22 @@ public class SortingMadnessLogic {
     private final int iterationLimit;
 
     /**
+     * Automatic algorithm selection field,
+
+     */
+    private boolean autoAlgorithmSelection;
+
+    /**
      * Object that stores chosen sorting strategy
      */
     SortingInterface sortingMethod;
+
+    /**
+     * Object used for choosing the best algorithm for characteristics of given data
+     */
+    AutomaticAlgorithmSelector autoAlgorithmSelector;
+
+
 
     /**
      * Constructor of class, responsible for choosing algorithm and setting fields
@@ -52,10 +65,14 @@ public class SortingMadnessLogic {
      */
 
     public SortingMadnessLogic(String algorithm, boolean descOrder, int iterationLimit) throws Exception {
-        chooseAlgorithm(algorithm);
         this.descOrder = descOrder;
         this.iterationLimit = iterationLimit;
+        chooseAlgorithm(algorithm);
+
     }
+
+
+
 
     /**
      * Method for choosing sorting strategy
@@ -96,6 +113,7 @@ public class SortingMadnessLogic {
      */
     public <T extends Comparable<T>> SortingResponse<T> sort(ArrayList <T> data) {
             if(data == null || data.isEmpty()) throw new NullPointerException("Data is null!");
+
             SortingResponse<T> result = new SortingResponse<>();
             String algorithmName = sortingMethod.getName();
             ArrayList<T> unorderedData = new ArrayList<>();
@@ -114,4 +132,6 @@ public class SortingMadnessLogic {
         return result;
         
     }
+
+
 }
