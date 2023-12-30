@@ -99,7 +99,7 @@ public class AutomaticAlgorithmSelector {
     private static boolean hasSmallValueRange(ArrayList<?> data) {
         Comparable max = Collections.max((Collection<? extends Comparable>) data);
         Comparable min = Collections.min((Collection<? extends Comparable>) data);
-        return max.compareTo(min) <= 100;
+        return (Integer) max - (Integer) min <= 100;
     }
 
 
