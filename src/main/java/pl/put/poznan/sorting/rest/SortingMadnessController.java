@@ -60,7 +60,7 @@ public class SortingMadnessController {
         return response;
     }
     @PostMapping(value = "/automaticAlgorithmSelect", consumes = "application/json", produces = "application/json")
-    public SortingResponse<Object> automaticAlgorithmSelect(@RequestBody SortingRequest<Object> request) {
+    public SortingResponse<Integer> automaticAlgorithmSelect(@RequestBody SortingRequest<Integer> request) throws Exception {
         logger.info("Given array: " + request.getArray().toString());
         if (request.getArray().isEmpty()) {
             logger.error("Data is empty");
@@ -70,10 +70,8 @@ public class SortingMadnessController {
         SortingInterface selectedAlgorithm = AutomaticAlgorithmSelector.selectAlgorithm(
                 request.getArray(), request.getSortingOrder());
 
-        SortingResponse<Object> response = new SortingResponse<>();
-        response.setAlgorithm(selectedAlgorithm.getName());
-
-        return response;
+        SortingMadnessLogic sorting = new SortingMadnessLogic(selectedAlgorithm.getName(), request.getSortingOrder(), request.getCheckedIterationLimit());
+        return sorting.sort(request.getArray());
     }
 
 

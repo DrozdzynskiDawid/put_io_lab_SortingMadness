@@ -91,9 +91,18 @@ public class AutomaticAlgorithmSelector {
     }
 
     private static boolean hasManyDuplicates(ArrayList<?> data) {
+        HashSet<Object> set = new HashSet<>();
+        ArrayList<Object> duplicates = new ArrayList<>();
 
-        HashSet<?> set = new HashSet<>(data);
-        return set.size() < 0.5 * data.size();
+        for (Object element : data) {
+            if (!set.add(element)) {
+                duplicates.add(element);
+            }
+        }
+        if (duplicates.size() > 0.5 * data.size()) {
+            return true;
+        }
+        return false;
     }
 
     private static boolean hasSmallValueRange(ArrayList<?> data) {
