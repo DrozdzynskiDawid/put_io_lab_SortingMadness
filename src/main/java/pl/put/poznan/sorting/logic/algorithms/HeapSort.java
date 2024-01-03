@@ -1,9 +1,21 @@
+/**
+ * Package for sorting algorithms implementations
+ */
 package pl.put.poznan.sorting.logic.algorithms;
 
 import pl.put.poznan.sorting.logic.SortingInterface;
 
 import java.util.ArrayList;
+/**
+ * That class implements heap sort algorithm as one of strategies used in strategy design pattern
+ *
+ * @author IdKheh
+ * @version 1.1
+ */
 public class HeapSort implements SortingInterface {
+    /**
+     * Field for storing name of algorithm
+     */
     private String name = SortingInterface.name;
 
     @Override
@@ -16,10 +28,20 @@ public class HeapSort implements SortingInterface {
         this.name = name;
     }
 
+    /**
+     * Constructor that set name of heap sort algorithm
+     */
     public HeapSort() {
         setName("heapSort");
     }
-
+    /**
+     * This method build heap
+     *
+     * @param data given array of data
+     * @param descOrder if true, data will be sorted in descending order
+     * @param n size of data array and the heap
+     * @param i root node in heap
+     */
     private <T extends Comparable<T>> void heapify(ArrayList<T> data, int n, int i, boolean descOrder) {
         int largest = i;
         int l = 2 * i + 1;
@@ -47,7 +69,14 @@ public class HeapSort implements SortingInterface {
             heapify(data, n, largest, descOrder);
         }
     }
-
+    /**
+     * This method is responsible for sorting an array using bubble sort algorithm
+     *
+     * @param data given array of data
+     * @param descOrder if true, data will be sorted in descending order
+     * @param iterationLimit maximal number of iterations in algorithm
+     * @return returns sorted array or modified array after specified number of iterations
+     */
     @Override
     public <T extends Comparable<T>> ArrayList<T> sort(ArrayList<T> data, boolean descOrder, int iterationLimit) {
         int n = data.size();
