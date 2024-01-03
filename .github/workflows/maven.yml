@@ -26,8 +26,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir staging && cp target/*.jar staging
+      - run: mkdir -p staging/jar
+      - run: cp target/*.jar staging/jar
+      - run: mvn javadoc:javadoc
+      - run: cp -R target/site/apidocs staging/apidocs
       - uses: actions/upload-artifact@v3
         with:
-          name: Package
-          path: staging
+          name: Jar Package
+          path: staging/jar
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Javadoc
+          path: staging/apidocs
